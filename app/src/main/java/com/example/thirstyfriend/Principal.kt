@@ -46,7 +46,7 @@ class Principal : AppCompatActivity() {
         // Configurar la barra
         progressBar.setMax(OBJETIVO_DIARIO)
 
-        
+
         btnMas.setOnClickListener {
             agregarAgua(INCREMENTO)
         }
