@@ -12,10 +12,16 @@
     tools:context=".MainActivity2">
 
     <!-- Barra superior azul -->
-    <View
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="@android:style/Widget.ProgressBar.Horizontal"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:background="@color/light_blue" />
+        android:layout_height="12dp"
+        android:progressTint="@color/green"
+        android:progressBackgroundTint="@color/dark_blue"
+        android:paddingStart="-3dp"
+        android:paddingEnd="-3dp"/>
 
     <!-- Título -->
     <TextView

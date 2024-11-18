@@ -6,6 +6,7 @@ import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.NumberPicker
+import android.widget.ProgressBar
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -54,5 +55,9 @@ class MainActivity4 : AppCompatActivity() {
             val intent = Intent(this, MainActivity5::class.java)
             startActivity(intent)
         }
+
+        val progressBar = findViewById<ProgressBar>(R.id.progressBar)
+        progressBar.max = 100
+        progressBar.progress = 75
     }
 }

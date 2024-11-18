@@ -3,5 +3,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="light_blue">#3b75e8</color> <!-- Azul claro -->
-
+    <color name="green">#04bc64</color>
+    <color name="gray_light">#E0E0E0</color>
+    <color name="dark_blue">#004bac</color>
 </resources>

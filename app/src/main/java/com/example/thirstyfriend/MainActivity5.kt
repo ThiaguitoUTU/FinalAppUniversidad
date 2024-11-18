@@ -6,6 +6,7 @@ import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.NumberPicker
+import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 
@@ -55,5 +56,9 @@ class MainActivity5 : AppCompatActivity() {
             val intent = Intent(this, Principal::class.java)
             startActivity(intent)
         }
+
+        val progressBar = findViewById<ProgressBar>(R.id.progressBar)
+        progressBar.max = 100
+        progressBar.progress = 100
     }
 }
