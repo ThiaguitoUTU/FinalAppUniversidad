@@ -35,6 +35,7 @@ class MainActivity3 : AppCompatActivity() {
         progressBar.max = 100
         progressBar.progress = 50
 
+
     }
 
 

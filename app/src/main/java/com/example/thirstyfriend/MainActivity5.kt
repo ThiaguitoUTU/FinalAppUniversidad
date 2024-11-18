@@ -60,5 +60,6 @@ class MainActivity5 : AppCompatActivity() {
         val progressBar = findViewById<ProgressBar>(R.id.progressBar)
         progressBar.max = 100
         progressBar.progress = 100
+
     }
 }

@@ -42,6 +42,5 @@ class MainActivity2 : AppCompatActivity() {
         progressBar.max = 100
         progressBar.progress = 25
 
-
     }
 }

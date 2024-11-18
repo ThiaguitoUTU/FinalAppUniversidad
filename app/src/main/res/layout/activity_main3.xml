@@ -42,7 +42,6 @@
         android:gravity="center"
         android:paddingTop="16dp">
 
-
         <!-- RadioGroup para selección de género, sin LinearLayout adicionales -->
         <RadioGroup
             android:id="@+id/genderRadioGroup"

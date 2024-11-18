@@ -22,7 +22,6 @@
         android:paddingStart="-3dp"
         android:paddingEnd="-3dp"/>
 
-
     <!-- Título en la parte superior -->
     <TextView
         android:layout_width="match_parent"

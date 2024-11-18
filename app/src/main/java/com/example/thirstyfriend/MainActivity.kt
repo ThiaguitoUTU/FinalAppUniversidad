@@ -34,6 +34,7 @@ class MainActivity : AppCompatActivity() {
         startButton.setOnClickListener {
             val intent = Intent(this, MainActivity2::class.java)
             startActivity(intent)
+
         }
     }
 }
