@@ -3,5 +3,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="light_blue">#3b75e8</color> <!-- Azul claro -->
+    <color name="progress_color">#447EFF</color>
+
 
 </resources>

@@ -18,35 +18,36 @@
         android:orientation="horizontal"
         android:gravity="center"
         android:background="#447EFF"
-        android:padding="16dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Toma agua"
-            android:textSize="20sp"
-            android:textColor="#FFFFFF"
-            android:layout_marginStart="8dp" />
+        android:padding="30dp">
     </LinearLayout>
 
-    <!-- Avatar -->
-    <ImageView
-        android:id="@+id/characterImageView"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:layout_marginTop="16dp"
-        android:layout_gravity="center" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp">
 
-    <!-- Barra circular de progreso -->
-    <ProgressBar
+        <ImageView
+            android:id="@+id/characterImageView"
+            android:layout_width="64dp"
+            android:layout_height="64dp"/>
+
+        <TextView
+            android:id="@+id/tomaAguaTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Recuerda tomar agua"
+            android:textSize="18sp"
+            android:layout_marginStart="60dp"
+            android:textColor="@color/black" /> <!-- Cambia el color según tu tema -->
+    </LinearLayout>
+    <!-- Barra circular personalizada -->
+    <com.example.thirstyfriend.CircularProgressBar
         android:id="@+id/progressBar"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_marginTop="16dp"
-        android:indeterminate="false"
-        android:max="1000"
-        android:progress="0"
-        android:progressDrawable="@drawable/progress_circular"
         android:layout_gravity="center" />
 
     <!-- Cantidad de agua -->
@@ -65,9 +66,11 @@
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginTop="16dp"
-        android:src="@drawable/animation"
+        android:src="@drawable/icmas"
+        android:scaleType="fitCenter"
         android:background="?attr/selectableItemBackground"
         android:layout_gravity="center" />
+
 
     <!-- Lista inferior -->
     <TextView
