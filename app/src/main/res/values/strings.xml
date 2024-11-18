@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Thirsty Friend</string>
+    <!-- Título principal -->
+    <string name="title_text">THIRSTY FRIEND</string>
+    <!-- Mensaje de bienvenida -->
+    <string name="welcome_message">Hola,\nSoy tu compañero personal de hidratación.</string>
+    <!-- Mensaje adicional -->
+    <string name="additional_message">Para proporcionar consejos de hidratación a medida, necesito obtener algunos datos básicos</string>
+    <!-- Texto del botón -->
+    <string name="start_button_text">COMENZAR</string>
+    <string name="title_text2">Tu nombre</string>
+    <string name="hint_name">Mi nombre es....</string>
+    <string name="continue_button_text">CONTINUAR</string>
+
+
+</resources>

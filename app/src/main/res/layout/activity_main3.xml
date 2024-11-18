@@ -1,0 +1,79 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="0dp"
+    android:gravity="top"
+    android:background="@color/white"
+    tools:context=".MainActivity3">
+
+    <!-- Barra superior -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/light_blue" />
+
+    <!-- Título en la parte superior -->
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tu género"
+        android:textSize="24sp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:background="@color/light_blue"
+        android:padding="10dp" />
+
+    <!-- Contenedor central -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:paddingTop="16dp">
+
+
+        <!-- RadioGroup para selección de género, sin LinearLayout adicionales -->
+        <RadioGroup
+            android:id="@+id/genderRadioGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <!-- Opción de Hombre -->
+            <RadioButton
+                android:id="@+id/radioHombre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableTop="@drawable/hombre"
+                android:text="Hombre"
+                android:buttonTint="@color/light_blue" />
+
+            <!-- Opción de Mujer -->
+            <RadioButton
+                android:id="@+id/radioMujer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableTop="@drawable/mujer"
+                android:text="Mujer"
+                android:buttonTint="@color/light_blue" />
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/botonContinuar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CONTINUAR"
+            android:layout_marginTop="24dp"
+            android:backgroundTint="#007aff"
+            android:textColor="#FFFFFF"
+            android:layout_gravity="center"/>
+    </LinearLayout>
+
+</LinearLayout>
