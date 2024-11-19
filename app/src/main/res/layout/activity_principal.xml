@@ -24,25 +24,26 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Thirsty Friend"
-            android:textSize="18sp"
+            android:fontFamily="@font/marykate"
+            android:textSize="40sp"
             android:textColor="@color/white"/>
 
 
     </LinearLayout>
 
     <TextView
-        android:id="@+id/tomaAguaTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Recuerda tomar agua"
-        android:textSize="16sp"
-        android:paddingHorizontal="20dp"
-        android:paddingVertical="10dp"
-        android:textColor="#FFFFFF"
+        android:text="¡Mantente hidratado!"
+        android:textSize="20sp"
+        android:paddingHorizontal="24dp"
+        android:paddingVertical="12dp"
+        android:textColor="@android:color/white"
+        android:fontFamily="@font/marykate"
         android:background="@drawable/rounded_text_background"
-        android:fontFamily="sans-serif-medium"
-        android:elevation="4dp" />
+        android:elevation="8dp"
+        android:layout_marginTop="16dp" />
 
     <FrameLayout
         android:layout_width="200dp"
@@ -85,11 +86,11 @@
         android:background="?attr/selectableItemBackground"
         android:layout_gravity="center" />
 
-
+    <!-- Historial -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:layout_marginHorizontal="16dp"
         android:orientation="vertical"
         android:background="@drawable/rounded_background"
@@ -103,8 +104,9 @@
             android:lineSpacingExtra="4dp"
             android:text="Historial"
             android:textColor="#447EFF"
-            android:textSize="16sp"
-            android:fontFamily="sans-serif-medium" />
+            android:textSize="18sp"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center_horizontal" />
     </LinearLayout>
 
 </LinearLayout>
