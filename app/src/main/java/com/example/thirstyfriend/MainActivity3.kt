@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ProgressBar
 import android.widget.RadioButton
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -20,6 +21,11 @@ class MainActivity3 : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.activity_main3, container, false)
+
+        // Configurar la barra de progreso
+        val progressBar = view.findViewById<ProgressBar>(R.id.progressBar)
+        progressBar.max = 100
+        progressBar.progress = 50
 
         // Obtener el userId desde los argumentos del fragmento
         userId = arguments?.getLong("USER_ID", -1L) ?: -1L

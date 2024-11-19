@@ -6,9 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.NumberPicker
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
 
 class MainActivity4 : Fragment() {
 
@@ -20,6 +23,19 @@ class MainActivity4 : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.activity_main4, container, false)
+
+
+        // Configurar la barra de progreso
+        val progressBar = view.findViewById<ProgressBar>(R.id.progressBar)
+        progressBar.max = 100
+        progressBar.progress = 75
+
+        // Configurar la animación
+        val goticaImage = view.findViewById<ImageView>(R.id.goticaImage)
+        Glide.with(requireContext())
+            .asGif()
+            .load(R.drawable.animation)
+            .into(goticaImage)
 
         userId = arguments?.getLong("USER_ID", -1L) ?: -1L
         if (userId == -1L) {
@@ -34,6 +50,7 @@ class MainActivity4 : Fragment() {
             value = 65
             descendantFocusability = NumberPicker.FOCUS_BLOCK_DESCENDANTS
         }
+
 
         val continueButton = view.findViewById<Button>(R.id.continue_button)
         continueButton.setOnClickListener {

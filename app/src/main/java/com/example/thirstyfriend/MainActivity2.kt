@@ -8,8 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
 
 class MainActivity2 : Fragment() {
 
@@ -19,6 +22,18 @@ class MainActivity2 : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.activity_main2, container, false)
+
+        // Configurar la barra de progreso
+        val progressBar = view.findViewById<ProgressBar>(R.id.progressBar)
+        progressBar.max = 100
+        progressBar.progress = 25
+
+        // Configurar la animación
+        val characterImageView = view.findViewById<ImageView>(R.id.characterImageView)
+        Glide.with(requireContext())
+            .asGif()
+            .load(R.drawable.animation)
+            .into(characterImageView)
 
         val nombreEditText = view.findViewById<EditText>(R.id.nombreEditText)
         val continueButton = view.findViewById<Button>(R.id.continue_button)
