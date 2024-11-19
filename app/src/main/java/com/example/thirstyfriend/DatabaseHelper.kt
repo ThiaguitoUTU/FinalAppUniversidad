@@ -1,5 +1,6 @@
 package com.example.thirstyfriend
 
+import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
@@ -15,7 +16,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
-        val createTable = """
+        val createTableUsuario = """
         CREATE TABLE usuario (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             nombre TEXT,
@@ -23,12 +24,24 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(
             peso INT,
             edad INTEGER
         )
-    """
-        db?.execSQL(createTable)
+        """
+        db?.execSQL(createTableUsuario)
+
+        val createTableRegistroAgua = """
+        CREATE TABLE registro_agua (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            usuario_id INTEGER,
+            cantidad INTEGER,
+            fecha INTEGER,
+            FOREIGN KEY(usuario_id) REFERENCES usuario(id)
+        )
+        """
+        db?.execSQL(createTableRegistroAgua)
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
         db?.execSQL("DROP TABLE IF EXISTS usuario")
+        db?.execSQL("DROP TABLE IF EXISTS registro_agua")
         onCreate(db)
     }
 
@@ -58,6 +71,41 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(
 
         db.close()
         return usuario
+    }
+
+    // Método para registrar la cantidad de agua tomada
+    fun registrarTomaAgua(usuarioId: Long, cantidad: Int) {
+        val db = this.writableDatabase
+        val values = ContentValues().apply {
+            put("usuario_id", usuarioId)
+            put("cantidad", cantidad)
+            put("fecha", System.currentTimeMillis())
+        }
+        db.insert("registro_agua", null, values)
+        db.close()
+    }
+
+    // Método para obtener el total de agua consumida por el usuario
+    fun getTotalAguaConsumida(usuarioId: Long): Int {
+        val db = this.readableDatabase
+        val cursor = db.rawQuery(
+            "SELECT SUM(cantidad) FROM registro_agua WHERE usuario_id = ?",
+            arrayOf(usuarioId.toString())
+        )
+        var total = 0
+        if (cursor.moveToFirst()) {
+            total = cursor.getInt(0)
+        }
+        cursor.close()
+        db.close()
+        return total
+    }
+
+    // Método para reiniciar los registros de agua de un usuario
+    fun reiniciarRegistros(usuarioId: Long) {
+        val db = this.writableDatabase
+        db.delete("registro_agua", "usuario_id = ?", arrayOf(usuarioId.toString()))
+        db.close()
     }
 
     // Método para obtener un entero o null del cursor
