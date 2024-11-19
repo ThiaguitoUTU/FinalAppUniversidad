@@ -26,8 +26,15 @@
             android:text="Thirsty Friend"
             android:fontFamily="@font/marykate"
             android:textSize="40sp"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white"
+            android:layout_weight="1"/>
 
+        <Button
+            android:id="@+id/perfil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Perfil"
+            android:layout_gravity="end"/>
     </LinearLayout>
 
     <TextView

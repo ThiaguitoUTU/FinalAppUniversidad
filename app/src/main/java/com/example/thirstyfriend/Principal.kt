@@ -1,6 +1,8 @@
 package com.example.thirstyfriend
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
@@ -50,6 +52,15 @@ class Principal : AppCompatActivity() {
         btnMas.setOnClickListener {
             agregarAgua(INCREMENTO)
         }
+
+        val perfilButton: Button = findViewById(R.id.perfil)
+        perfilButton.setOnClickListener {
+            // Crea un intent para abrir UsuarioActivity
+            val intent = Intent(this, UsuarioFragment::class.java)
+            // Pasar el ID del usuario (por ejemplo, 1 si es el único usuario o un ID específico si lo tienes)
+            intent.putExtra("USER_ID", 1L) // Ajusta según tu lógica para obtener el ID correcto
+            startActivity(intent)
+        }
     }
 
     private fun agregarAgua(cantidad: Int) {
@@ -68,4 +79,7 @@ class Principal : AppCompatActivity() {
             tvHistorial.text = nuevoRegistro
         }
     }
+
+
+
 }
