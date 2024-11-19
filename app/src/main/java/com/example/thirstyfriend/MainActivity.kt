@@ -14,32 +14,31 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 
-class MainActivity : Fragment() {
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContentView(R.layout.activity_main)
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
 
-        val view = inflater.inflate(R.layout.activity_main, container, false)
+        val characterImageView = findViewById<ImageView>(R.id.characterImageView)
 
-        // Configurar la animación
-        val characterImageView = view.findViewById<ImageView>(R.id.characterImageView)
-        Glide.with(requireContext())
+        Glide.with(this)
             .asGif()
             .load(R.drawable.animation)
             .into(characterImageView)
 
-        // Configurar el botón
-        view.findViewById<Button>(R.id.startButton).setOnClickListener {
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, MainActivity2())
-                .addToBackStack(null)
-                .commit()
-        }
+        // Cambiado para usar findViewById
+        val startButton = findViewById<Button>(R.id.startButton)
+        startButton.setOnClickListener {
+            val intent = Intent(this, MainContainerActivity::class.java)
+            startActivity(intent)
 
-        return view
+        }
     }
 }
-

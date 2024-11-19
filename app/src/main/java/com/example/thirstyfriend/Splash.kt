@@ -15,18 +15,18 @@ class Splash : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        // Mostrar el GIF usando Glide
-        val splashImageView = findViewById<ImageView>(R.id.splashImage)
+        // Cargar el GIF usando Glide
+        val characterImageView = findViewById<ImageView>(R.id.splashImage)
         Glide.with(this)
             .asGif()
-            .load(R.drawable.animation)
-            .into(splashImageView)
+            .load(R.drawable.animation) // Reemplaza con el nombre de tu GIF en drawable
+            .into(characterImageView)
 
-        // Usar corrutina para retrasar el inicio
-        lifecycleScope.launch {
-            delay(3000) // 3 segundos
-            startActivity(Intent(this@Splash, MainContainerActivity::class.java))
-            finish() // Cierra la actividad Splash
+        // Usar corrutina para el retardo
+        GlobalScope.launch {
+            delay(3000) // 2000 milisegundos = 2 segundos
+            startActivity(Intent(this@Splash, MainActivity::class.java))
+            finish()
         }
     }
 }

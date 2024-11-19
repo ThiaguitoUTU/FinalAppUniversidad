@@ -24,7 +24,7 @@ class MainContainerActivity : AppCompatActivity() {
         if (savedInstanceState == null) {
             // Cargar el primer fragmento
             supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, MainActivity()) // MainActivity como primer fragmento
+                .replace(R.id.fragment_container, MainActivity2()) // MainActivity como primer fragmento
                 .commit()
         }
     }
