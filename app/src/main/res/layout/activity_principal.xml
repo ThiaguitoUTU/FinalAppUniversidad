@@ -28,7 +28,6 @@
             android:textSize="40sp"
             android:textColor="@color/white"/>
 
-
     </LinearLayout>
 
     <TextView
@@ -60,7 +59,7 @@
             android:id="@+id/characterImageView"
             android:layout_width="154dp"
             android:layout_height="154dp"
-            android:layout_gravity="center" /> <!-- Cambia este drawable por tu imagen -->
+            android:layout_gravity="center" />
 
     </FrameLayout>
 
@@ -105,8 +104,7 @@
             android:text="Historial"
             android:textColor="#447EFF"
             android:textSize="18sp"
-            android:fontFamily="sans-serif-medium"
-            android:gravity="center_horizontal" />
-    </LinearLayout>
+            android:fontFamily="sans-serif-medium" />
 
+    </LinearLayout>
 </LinearLayout>
