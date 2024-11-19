@@ -1,6 +1,7 @@
 package com.example.thirstyfriend
 
 import android.content.ContentValues
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -72,10 +73,23 @@ class MainActivity5 : Fragment() {
             val count = db.update("usuario", values, selection, selectionArgs)
 
             if (count > 0) {
+                // Guardar el estado de onboarding en SharedPreferences
+                val sharedPrefs = requireContext().getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
+                sharedPrefs.edit().apply {
+                    putBoolean("onboarding_completed", true)
+                    apply()
+                }
+
+                // Notificar éxito al usuario
                 Toast.makeText(requireContext(), "Edad actualizada correctamente", Toast.LENGTH_SHORT).show()
 
-                // Pasar a la siguiente actividad
-                startActivity(Intent(requireContext(), Principal::class.java))
+                // Pasar a la siguiente actividad con banderas para limpiar el stack
+                val intent = Intent(requireContext(), Principal::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                startActivity(intent)
+
+                // Finalizar la actividad asociada al fragmento
+                requireActivity().finish()
             } else {
                 Toast.makeText(requireContext(), "Hubo un error al actualizar la edad", Toast.LENGTH_SHORT).show()
             }

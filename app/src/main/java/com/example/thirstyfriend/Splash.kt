@@ -15,17 +15,30 @@ class Splash : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        // Cargar el GIF usando Glide
-        val characterImageView = findViewById<ImageView>(R.id.splashImage)
+        // Mostrar el GIF usando Glide
+        val splashImageView = findViewById<ImageView>(R.id.splashImage)
         Glide.with(this)
             .asGif()
-            .load(R.drawable.animation) // Reemplaza con el nombre de tu GIF en drawable
-            .into(characterImageView)
+            .load(R.drawable.animation)
+            .into(splashImageView)
 
-        // Usar corrutina para el retardo
-        GlobalScope.launch {
-            delay(3000) // 2000 milisegundos = 2 segundos
-            startActivity(Intent(this@Splash, MainActivity::class.java))
+        // Usar corrutina para retrasar el inicio
+        lifecycleScope.launch {
+            delay(3000) // 3 segundos
+
+            // Verificar si el usuario ya completó el onboarding
+            val prefs = getSharedPreferences("app_prefs", MODE_PRIVATE)
+            val onboardingCompleted = prefs.getBoolean("onboarding_completed", false)
+
+            val intent = if (onboardingCompleted) {
+                // Si ya completó el onboarding, ir a Principal
+                Intent(this@Splash, Principal::class.java)
+            } else {
+                // Si no ha completado el onboarding, ir a MainActivity
+                Intent(this@Splash, MainActivity::class.java)
+            }
+
+            startActivity(intent)
             finish()
         }
     }
