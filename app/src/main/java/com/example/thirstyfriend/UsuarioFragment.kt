@@ -30,6 +30,7 @@ class UsuarioFragment : AppCompatActivity() {
             findViewById<TextView>(R.id.tvPeso).text = usuario.peso?.toString() ?: "No especificado"
             findViewById<TextView>(R.id.tvEdad).text = usuario.edad?.toString() ?: "No especificado"
             mostrarHistorialAgua(userId)
+            mostrarHistorialMetas(userId)
         } else {
             Toast.makeText(this, "Usuario no encontrado", Toast.LENGTH_SHORT).show()
         }
@@ -65,5 +66,13 @@ class UsuarioFragment : AppCompatActivity() {
         db.close()
 
         findViewById<TextView>(R.id.tvHistorial).text = historial.toString()
+    }
+
+    private fun mostrarHistorialMetas(usuarioId: Long) {
+        val dbHelper = DatabaseHelper(this)
+        val historialMetas = dbHelper.getHistorialMetas(usuarioId)
+
+        val historialMetasTexto = historialMetas.joinToString("\n")
+        findViewById<TextView>(R.id.tvHistorial).text = historialMetasTexto
     }
 }

@@ -2,9 +2,9 @@ package com.example.thirstyfriend
 
 import android.content.ContentValues
 import android.content.Context
+import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import android.database.Cursor
 
 class DatabaseHelper(context: Context) : SQLiteOpenHelper(
     context, DATABASE_NAME, null, DATABASE_VERSION
@@ -37,11 +37,22 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(
         )
         """
         db?.execSQL(createTableRegistroAgua)
+
+        val createTableHistorialMetas = """
+        CREATE TABLE historial_metas (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            usuario_id INTEGER,
+            fecha INTEGER,
+            FOREIGN KEY(usuario_id) REFERENCES usuario(id)
+        )
+        """
+        db?.execSQL(createTableHistorialMetas)
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
         db?.execSQL("DROP TABLE IF EXISTS usuario")
         db?.execSQL("DROP TABLE IF EXISTS registro_agua")
+        db?.execSQL("DROP TABLE IF EXISTS historial_metas")
         onCreate(db)
     }
 
@@ -83,6 +94,36 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(
         }
         db.insert("registro_agua", null, values)
         db.close()
+    }
+
+    // Método para registrar que se alcanzó una meta
+    fun registrarMetaAlcanzada(usuarioId: Long, fecha: Long) {
+        val db = this.writableDatabase
+        val values = ContentValues().apply {
+            put("usuario_id", usuarioId)
+            put("fecha", fecha)
+        }
+        db.insert("historial_metas", null, values)
+        db.close()
+    }
+
+    // Método para obtener el historial de metas alcanzadas
+    fun getHistorialMetas(usuarioId: Long): List<String> {
+        val db = this.readableDatabase
+        val cursor = db.rawQuery(
+            "SELECT fecha FROM historial_metas WHERE usuario_id = ? ORDER BY fecha DESC",
+            arrayOf(usuarioId.toString())
+        )
+
+        val metas = mutableListOf<String>()
+        while (cursor.moveToNext()) {
+            val fecha = java.text.SimpleDateFormat("dd/MM/yyyy HH:mm:ss")
+                .format(cursor.getLong(0))
+            metas.add("Meta alcanzada el $fecha")
+        }
+        cursor.close()
+        db.close()
+        return metas
     }
 
     // Método para obtener el total de agua consumida por el usuario
