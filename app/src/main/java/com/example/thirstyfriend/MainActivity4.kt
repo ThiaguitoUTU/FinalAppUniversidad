@@ -3,6 +3,9 @@ package com.example.thirstyfriend
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.NumberPicker
@@ -11,54 +14,48 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 
-class MainActivity4 : AppCompatActivity() {
-    private lateinit var numberPicker: NumberPicker
+class MainActivity4 : Fragment() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main4)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val view = inflater.inflate(R.layout.activity_main4, container, false)
 
-        numberPicker = findViewById(R.id.numberPicker)
-
-        // Configurar el NumberPicker
+        // Configurar NumberPicker
+        val numberPicker = view.findViewById<NumberPicker>(R.id.numberPicker)
         numberPicker.apply {
             minValue = 1
             maxValue = 209
-            value = 65  // Valor inicial
-
-            // Opcional: Quitar el teclado al hacer click
+            value = 65
             descendantFocusability = NumberPicker.FOCUS_BLOCK_DESCENDANTS
-
-            // Opcional: Formato para mostrar "kg" junto al número
             setFormatter { value -> "$value kg" }
         }
 
-        // Opcional: Listener para cuando el valor cambia
-        numberPicker.setOnValueChangedListener { picker, oldVal, newVal ->
-            // Aquí puedes manejar el cambio de valor
-            Log.d("WeightPicker", "Peso seleccionado $newVal kg")
-        }
-
-        val goticaImage = findViewById<ImageView>(R.id.goticaImage)
-
-        Glide.with(this)
+        // Configurar la animación
+        val goticaImage = view.findViewById<ImageView>(R.id.goticaImage)
+        Glide.with(requireContext())
             .asGif()
             .load(R.drawable.animation)
             .into(goticaImage)
 
-
-
-        val botonContinuar = findViewById<Button>(R.id.botonContinuar)
-        botonContinuar.setOnClickListener {
-            val intent = Intent(this, MainActivity5::class.java)
-            startActivity(intent)
-        }
-
-        val progressBar = findViewById<ProgressBar>(R.id.progressBar)
+        // Configurar la barra de progreso
+        val progressBar = view.findViewById<ProgressBar>(R.id.progressBar)
         progressBar.max = 100
         progressBar.progress = 75
 
+        // Configurar el botón
+        view.findViewById<Button>(R.id.botonContinuar).setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, MainActivity5())
+                .addToBackStack(null)
+                .commit()
+        }
+
+        return view
     }
 }

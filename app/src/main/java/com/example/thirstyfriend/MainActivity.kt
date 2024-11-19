@@ -9,32 +9,37 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.bumptech.glide.Glide
 import android.content.Intent
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 
-class MainActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_main)
+class MainActivity : Fragment() {
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
 
-        val characterImageView = findViewById<ImageView>(R.id.characterImageView)
+        val view = inflater.inflate(R.layout.activity_main, container, false)
 
-        Glide.with(this)
+        // Configurar la animación
+        val characterImageView = view.findViewById<ImageView>(R.id.characterImageView)
+        Glide.with(requireContext())
             .asGif()
             .load(R.drawable.animation)
             .into(characterImageView)
 
-        // Cambiado para usar findViewById
-        val startButton = findViewById<Button>(R.id.startButton)
-        startButton.setOnClickListener {
-            val intent = Intent(this, MainActivity2::class.java)
-            startActivity(intent)
-
+        // Configurar el botón
+        view.findViewById<Button>(R.id.startButton).setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, MainActivity2())
+                .addToBackStack(null)
+                .commit()
         }
+
+        return view
     }
 }
+

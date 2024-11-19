@@ -6,6 +6,7 @@ import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import kotlinx.coroutines.*
 
@@ -14,18 +15,18 @@ class Splash : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        // Cargar el GIF usando Glide
-        val characterImageView = findViewById<ImageView>(R.id.splashImage)
+        // Mostrar el GIF usando Glide
+        val splashImageView = findViewById<ImageView>(R.id.splashImage)
         Glide.with(this)
             .asGif()
-            .load(R.drawable.animation) // Reemplaza con el nombre de tu GIF en drawable
-            .into(characterImageView)
+            .load(R.drawable.animation)
+            .into(splashImageView)
 
-        // Usar corrutina para el retardo
-        GlobalScope.launch {
-            delay(3000) // 2000 milisegundos = 2 segundos
-            startActivity(Intent(this@Splash, MainActivity::class.java))
-            finish()
+        // Usar corrutina para retrasar el inicio
+        lifecycleScope.launch {
+            delay(3000) // 3 segundos
+            startActivity(Intent(this@Splash, MainContainerActivity::class.java))
+            finish() // Cierra la actividad Splash
         }
     }
 }
