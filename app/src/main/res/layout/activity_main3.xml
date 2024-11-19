@@ -53,7 +53,7 @@
 
             <!-- Opción de Hombre -->
             <RadioButton
-                android:id="@+id/radioHombre"
+                android:id="@+id/radioButtonHombre"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableTop="@drawable/hombre"
@@ -62,7 +62,7 @@
 
             <!-- Opción de Mujer -->
             <RadioButton
-                android:id="@+id/radioMujer"
+                android:id="@+id/radioButtonMujer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableTop="@drawable/mujer"
