@@ -96,7 +96,6 @@ class MainActivity5 : Fragment() {
 
             db.close()
         }
-
         return view
     }
 }
