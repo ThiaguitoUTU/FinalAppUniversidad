@@ -54,7 +54,7 @@
 
     <!-- Campo de texto de nombre -->
     <EditText
-        android:id="@+id/name_input"
+        android:id="@+id/nombreEditText"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:hint="@string/hint_name"
