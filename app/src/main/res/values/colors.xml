@@ -7,4 +7,5 @@
     <color name="gray_light">#E0E0E0</color>
     <color name="dark_blue">#004bac</color>
     <color name="progress_color">#447EFF</color>
+    <color name="teal_700">#00796B</color>
 </resources>

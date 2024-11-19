@@ -1,9 +1,13 @@
 package com.example.thirstyfriend
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 
 class UsuarioFragment : AppCompatActivity() {
 
@@ -33,5 +37,18 @@ class UsuarioFragment : AppCompatActivity() {
         } else {
             Toast.makeText(this, "Usuario no encontrado", Toast.LENGTH_SHORT).show()
         }
+
+        val startButton = findViewById<Button>(R.id.btnVolver)
+        startButton.setOnClickListener {
+            val intent = Intent(this, Principal::class.java)
+            startActivity(intent)
+        }
+
+        val characterImageView = findViewById<ImageView>(R.id.characterImageView)
+
+        Glide.with(this)
+            .asGif()
+            .load(R.drawable.animation)
+            .into(characterImageView)
     }
 }
